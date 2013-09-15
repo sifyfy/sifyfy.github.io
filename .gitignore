@@ -1,0 +1,8 @@
+*.o
+_cache/
+_site/
+*.hi
+.cabal-sandbox/
+dist/
+cabal.sandbox.config
+.sass-cache/
