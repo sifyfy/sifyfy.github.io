@@ -80,6 +80,16 @@ header {
         text-decoration: underline;
         text-shadow: 1px 1px 0px rgba(200,200,200,0.6);
     }
+
+    #SirotanClicker {
+        width: 100%;
+        text-align: center;
+
+        img.on {
+            box-shadow: 0px 0px 5px rgba(200,200,0,0.7);
+            border-radius: 6px;
+        }
+    }
 }
 
 .display {
