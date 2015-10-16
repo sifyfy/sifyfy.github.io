@@ -1,16 +1,15 @@
 {-# LANGUAGE DeriveDataTypeable, DoAndIfThenElse, OverloadedStrings #-}
 
-import Control.Monad
-import Data.Binary (Binary (..))
-import Data.Typeable (Typeable (..))
-import Hakyll
-import System.Process (system)
-import System.Exit (ExitCode (..))
+import           Control.Monad
+import           Data.Binary     (Binary (..))
+import           Data.Typeable   (Typeable (..))
+import           Hakyll
+import           System.Exit     (ExitCode (..))
 import qualified System.FilePath as FP
-
+import           System.Process  (system)
 
 main :: IO ()
-main = hakyllWith config $ do
+main = hakyll $ do
     match "images/*" $ do
         route   idRoute
         compile copyFileCompiler
@@ -44,11 +43,6 @@ main = hakyllWith config $ do
 
     match "templates/*" $ compile templateCompiler
 
-
-config :: Configuration
-config = defaultConfiguration
-    { deployCommand = "cp -r _site/* /home/uduki/fs/ssh/siphilia.net/home/siphilia/public_html/siphilia.net" }
-
 haxeRoute :: Routes
 haxeRoute = constRoute "js/dummy.js"
 
@@ -73,7 +67,7 @@ haxeCompiler :: Compiler (Item HaxeFile)
 haxeCompiler = makeItem HaxeFile
 
 (<&&>) :: String -> String -> String
-(<&&>) = \a b -> a ++ " && " ++ b
+(<&&>) a b = a ++ " && " ++ b
 
 cd :: FilePath -> String
 cd = ("cd " ++)
@@ -86,3 +80,4 @@ haxe = ("haxe " ++)
 
 cp :: FilePath -> FilePath -> String
 cp s d = "cp " ++ s ++ " " ++ d
+
