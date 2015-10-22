@@ -2,7 +2,7 @@
 <html lang="ja">
     <head>
         <meta charset="utf-8">
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="./css/default.css" type="text/css">
 
 
@@ -10,11 +10,11 @@
     </head>
     <body>
         <header id="GlobalNav">
-    <nav class="container">
+    <nav class="container-fluid">
         <ul>
-            <li id="logo">siphilia.github.io</li>
-            <li><a href="./">Home</a></li>
+            <li id="logo"><a href="./">siphilia.github.io</a></li>
             <li><a href="./games.html">Games</a></li>
+            <li><a href="./notes.html">Notes</a></li>
             <li><a href="https://twitter.com/siphilia_rn">Twitter</a></li>
             <li><a href="http://github.com/siphilia">Github</a></li>
             <li><a href="http://qiita.com/siphilia_rn">Qiita</a></li>
@@ -24,11 +24,29 @@
 </header>
 
 
-        <div id="Main" class="container display" role="main">
+        <div id="Main" class="container-fluid" role="main">
             <div id="HomeImage">
     <div id="HomeImageInner">
         <img src="./images/home.jpg">
     </div>
+</div>
+<div id="HomeDashboard">
+    <section class="RecentlyNotes">
+        <h1>Recently Notes</h1>
+        <ul>
+    
+        <li>
+            <a href="./notes/2015-10-18-first-note.html">1枚目</a> - 2015/10/18
+        </li>
+    
+</ul>
+
+
+    </section>
+    <section class="Twitter">
+        <a class="twitter-timeline" href="https://twitter.com/siphilia_rn" data-widget-id="655313724090126336">@siphilia_rnさんのツイート</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </section>
 </div>
 
 
