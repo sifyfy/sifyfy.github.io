@@ -6,7 +6,7 @@ $header-height: 2.5em;
 $header-padding-top: 3px;
 $header-padding-bottom: 3px;
 $header-margin-top: 0px;
-$header-margin-bottom: 10px;
+$header-margin-bottom: 1rem;
 $header-height-all:
     ( #{$header-height}
     + #{$header-padding-top}
@@ -29,7 +29,8 @@ $footer-height-all:
     + #{$footer-border-top-size}
     + #{$footer-height} );
 
-$gray: #dadada;
+$bg: #000211;
+$default-border-color: #e8e8e8;
 
 @import url(http://fonts.googleapis.com/css?family=Petit+Formal+Script);
 
@@ -38,7 +39,7 @@ html, body {
 }
 
 header {
-    background-color: #1D0404;
+    background-color: $bg;
     width: 100%;
     min-width: $site-width;
     height: $header-height;
@@ -77,6 +78,7 @@ header {
         li#logo {
             margin: 0 60px 0 5px;
             font-family: 'Petit Formal Script', cursive;
+            font-weight: bold;
             color: #fafafa;
             flex-grow: 1;
         }
@@ -90,8 +92,7 @@ header {
 
     h1 {
         font-size: 150%;
-        margin-bottom: 30px;
-        text-decoration: underline;
+        margin: 2rem 0 3rem 0;
         text-shadow: 1px 1px 0px rgba(200,200,200,0.6);
     }
 
@@ -131,13 +132,51 @@ header {
             }
         }
     }
+
+    #HomeDashboard {
+        width: 100%;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch;
+
+        .RecentlyNotes {
+            flex-grow: 0;
+            width: 49.5%;
+
+            h1 {
+                font-size: 110%;
+                margin: 0 0 0.5em 0;
+            }
+        }
+
+        .Twitter {
+            flex-grow: 0;
+            width: 49.5%;
+            font-size: 0;
+        }
+    }
+
+    .Note {
+        .info {
+            margin: 0 0 1rem 0;
+            padding: 0.25em;
+            border-top: 2px solid $default-border-color;
+            color: #808080;
+            text-align: right;
+        }
+
+        .body {
+        }
+    }
 }
 
 footer {
     height: $footer-height;
     margin: $footer-margin-top 0;
     padding: $footer-padding-top 0 $footer-padding-bottom 0;
-    border-top: $footer-border-top-size solid $gray;
+    border-top: $footer-border-top-size solid $default-border-color;
     text-align: center;
 }
 
