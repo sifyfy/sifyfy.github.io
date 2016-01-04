@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="../css/default.css" type="text/css">
+
+
+        <title>ghc-modをstackと一緒に使う時の手順 - siphilia.github.io</title>
+    </head>
+    <body>
+        <header id="GlobalNav">
+    <nav class="container-fluid">
+        <ul>
+            <li id="logo"><a href="../">siphilia.github.io</a></li>
+            <li><a href="../games.html">Games</a></li>
+            <li><a href="../notes.html">Notes</a></li>
+            <li><a href="https://twitter.com/siphilia_rn">Twitter</a></li>
+            <li><a href="http://github.com/siphilia">Github</a></li>
+            <li><a href="http://qiita.com/siphilia_rn">Qiita</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+        <div id="Main" class="container" role="main">
+            <h1>ghc-modをstackと一緒に使う時の手順</h1>
+            <div class="Note">
+    <div class="info">
+        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 2016/01/05
+        
+    </div>
+    <div class="body">
+        <p>Haskellネタです。</p>
+<p>具体的な手順は<a href="http://qiita.com/siphilia_rn/items/bba4519710bb0513d6f9">stackとghc-modを一緒に使う時の手順</a>としてQiitaの方に投稿しました。</p>
+<p>前回のconduitネタの投稿から2年と2か月ちょっと経ってるんだけど、もうそんなに経つんだね…。</p>
+<p>cabal-helper-wrapperが初回実行時にCabalをcabal-helper用にインストールする部分ですが、 出てるメッセージを見るとuser空間もしくはglobal空間のどっちかに入っていればそっちを使うっぽい。<br />
+ただstack環境でuser/global空間にライブラリを入れるのはよく分からないしどうなのかなぁって事で、今回はcabal-helper専用にインストールしてもらうことにしました。</p>
+    </div>
+</div>
+
+
+        </div>
+        <footer>
+    <div id="Copyright"><small>&copy; 2013-2015 <a href="../contact.html">siphilia</a></small></div>
+</footer>
+
+
+    </body>
+</html>
+
