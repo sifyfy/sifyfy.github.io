@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="../css/default.css" type="text/css">
+
+
+        <title>ghcjsがnode.jsのバージョンによってはうまく動かない事への対処 - siphilia.github.io</title>
+    </head>
+    <body>
+        <header id="GlobalNav">
+    <nav class="container-fluid">
+        <ul>
+            <li id="logo"><a href="../">siphilia.github.io</a></li>
+            <li><a href="../games.html">Games</a></li>
+            <li><a href="../notes.html">Notes</a></li>
+            <li><a href="https://twitter.com/siphilia_rn">Twitter</a></li>
+            <li><a href="http://github.com/siphilia">Github</a></li>
+            <li><a href="http://qiita.com/siphilia_rn">Qiita</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+        <div id="Main" class="container" role="main">
+            <h1>ghcjsがnode.jsのバージョンによってはうまく動かない事への対処</h1>
+            <div class="Note">
+    <div class="info">
+        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 2016/02/05
+        
+    </div>
+    <div class="body">
+        <p>Haskell(ghcjs)ネタです。</p>
+<p>最初はQiitaの方に書こうと思っていたのですが、色々試していたらnode.jsのバージョン管理方法に強く依存する事が分かったのでやめてこっちにしました。</p>
+<hr />
+<h2 id="エラーと解決方法">エラーと解決方法</h2>
+<p>stackを使ってghcjsをsetupする時、又はstackで入れたghcjsでbuildする時に<code>The program 'ghcjs' version &gt;=0.1 is required but the version of .../ghcjs could not be determined.</code>というエラーを吐く場合があります。<br />
+これは<a href="https://github.com/commercialhaskell/stack/issues/1496">stack issue #1496</a>に書かれていますが、node.jsのバージョンによって発生するエラーのようです。<br />
+node.jsを4.0未満のバージョンにすると概ねどの環境でも正常に動くようになるみたいですが、4.0以上のバージョンでもエラーせずに動くものもあるようです(4.0とか5.0とか5.1とか)。<br />
+ですので解決策は、エラーが出ないnode.jsのバージョンに差し替えましょう、という事になります。</p>
+<h2 id="node.jsの差し替え">node.jsの差し替え</h2>
+<p>node.jsの差し替えは、既存のnode.jsのバージョン管理システム(n,nvm,nave,nodebrew,nodist,ndenv)を使えばOKです。</p>
+<h2 id="ghcjsの再インストールが必要なケース">ghcjsの再インストールが必要(?)なケース</h2>
+<p>stackで入れたghcjsのsetup-exe(例:~/.stack/setup-exe-cache/x86_64-linux/setup-Simple-Cabal-1.22.4.0-ghcjs-0.2.0.20151230.3_ghc-7.10.2)はビルド時に存在していたnodeコマンドのパスがshebangとしてハードコーディングされていて、~/.ghcjs/x86_64-linux-0.2.0.20151230.3-7.10.2/ghcjs/nodeファイルにもnodeコマンドのパスが書かれています。</p>
+<p>ですので、ghcjsとツール群が認識しているnode.jsのパスも一緒に変更しないと、nodeコマンドが見つからないというエラーを吐くようになったり、いつまでも差し替え前のnodeコマンドを参照したりします。</p>
+<p>必要最低限の修正に留めるのは調査するのが面倒だったので、今回は下記の3つを削除してからghcjsの再インストールを行う事で新しいnode.jsのパスを認識してもらう事にしました。</p>
+<ul>
+<li>~/.ghcjs</li>
+<li>~/.stack/setup-exe-cache/x86_64-linux/setup-Simple-Cabal-1.22.4.0-ghcjs-0.2.0.20151230.3_ghc-7.10.2</li>
+<li>~/.stack/setup-exe-cache/x86_64-linux/setup-Simple-Cabal-1.22.4.0-ghcjs-0.2.0.20151230.3_ghc-7.10.2.jsexe</li>
+</ul>
+<p>これでnode.jsのバージョン管理システムを乗り換えたりしてnodeコマンドのパスが変わっても新しい方のパスを認識させることが出来ます。</p>
+    </div>
+</div>
+
+
+        </div>
+        <footer>
+    <div id="Copyright"><small>&copy; 2013-2015 <a href="../contact.html">siphilia</a></small></div>
+</footer>
+
+
+    </body>
+</html>
+
