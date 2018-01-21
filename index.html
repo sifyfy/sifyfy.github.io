@@ -1,69 +1,132 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="utf-8">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css">
+<head>
+    <meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/5.0.0/sanitize.min.css" type="text/css">
 <link rel="stylesheet" href="./css/default.css" type="text/css">
+<script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
 
+    <title>siphilia.github.io</title>
+</head>
+<body>
+<header>
+    <div class="profile">
+        <div class="avatar"><a href="./"><img src="https://avatars0.githubusercontent.com/u/5382802?v=4" width="150" height="150"></a></div>
+        <div class="name">Name: siphilia</div>
+    </div>
+    <nav>
+    <ul class="links">
+        <li class="link"><a href="https://github.com/siphilia">Github</a></li>
+        <li class="link"><a href="https://twitter.com/siphilia_rn">Twitter</a></li>
+        <li class="link"><a href="https://theboss.tech/@siphilia_rn">Mastodon</a></li>
+        <li class="link"><a href="https://qiita.com/siphilia_rn">Qiita</a></li>
+        <li class="link"><a href="./notes.html">Notes</a></li>
+    </ul>
+</nav>
 
-        <title>siphilia.github.io</title>
-    </head>
-    <body>
-        <header id="GlobalNav">
-    <nav class="container-fluid">
-        <ul>
-            <li id="logo"><a href="./">siphilia.github.io</a></li>
-            <li><a href="./games.html">Games</a></li>
-            <li><a href="./notes.html">Notes</a></li>
-            <li><a href="https://twitter.com/siphilia_rn">Twitter</a></li>
-            <li><a href="http://github.com/siphilia">Github</a></li>
-            <li><a href="http://qiita.com/siphilia_rn">Qiita</a></li>
-            <li><a href="./contact.html">Contact</a></li>
-        </ul>
-    </nav>
 </header>
 
+<div id="main-outer">
+    <main>
+        <script defer>
+    (() => {
+        const n = 5;
 
-        <div id="Main" class="container-fluid" role="main">
-            <div id="HomeImage">
-    <div id="HomeImageInner">
-        <img src="./images/home.jpg">
-    </div>
-</div>
-<div id="HomeDashboard">
-    <section class="RecentlyNotes">
-        <h1>Recently Notes</h1>
-        <ul>
+        async function loadItems(url, destSelector, sorter, nameKey, urlKey) {
+            const r = await fetch(url);
+            if (r.ok) {
+                const items = await r.json();
+                items.sort(sorter);
+                const ul = document.querySelector(destSelector);
+                for (const item of items.slice(0,n)) {
+                    const a = document.createElement('a');
+                    a.setAttribute('href', item[urlKey]);
+                    const t = document.createTextNode(item[nameKey]);
+                    a.appendChild(t);
+                    const li = document.createElement('li');
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                }
+            }
+        }
+
+        loadItems(
+            'https://api.github.com/users/siphilia/repos',
+            'main .github .repositories',
+            (a, b) => new Date(a.pushed_at) <= new Date(b.pushed_at),
+            'name',
+            'html_url'
+        );
+
+        loadItems(
+            'https://qiita.com/api/v2/users/siphilia_rn/items?page=1&per_page=' + n,
+            'main .qiita .posts',
+            (a, b) => new Date(a.created_at) <= new Date(b.created_at),
+            'title',
+            'url'
+        );
+    })();
+</script>
+<section class="recently-notes">
+    <h1>Recently Notes</h1>
+    <ul class="article-index">
     
-        <li>
-            <a href="./notes/2016-02-05-ghcjs-and-nodejs.html">ghcjsがnode.jsのバージョンによってはうまく動かない事への対処</a> - 2016/02/05
+        <li class="card">
+            <div class="title">
+                <a href="./notes/2016-02-05-ghcjs-and-nodejs.html">ghcjsがnode.jsのバージョンによってはうまく動かない事への対処</a>
+            </div>
+            <div class="date"><i class="far fa-calendar-alt"></i> 2016/02/05</div>
         </li>
     
-        <li>
-            <a href="./notes/2016-01-05-ghc-mod-with-stack.html">ghc-modをstackと一緒に使う時の手順</a> - 2016/01/05
+        <li class="card">
+            <div class="title">
+                <a href="./notes/2016-01-05-ghc-mod-with-stack.html">ghc-modをstackと一緒に使う時の手順</a>
+            </div>
+            <div class="date"><i class="far fa-calendar-alt"></i> 2016/01/05</div>
         </li>
     
-        <li>
-            <a href="./notes/2015-10-18-first-note.html">1枚目</a> - 2015/10/18
+        <li class="card">
+            <div class="title">
+                <a href="./notes/2015-10-18-first-note.html">1枚目</a>
+            </div>
+            <div class="date"><i class="far fa-calendar-alt"></i> 2015/10/18</div>
         </li>
     
 </ul>
 
+</section>
+<section class="github">
+    <h1>Github Repositories</h1>
+    <ul class="repositories"></ul>
+</section>
+<section class="qiita">
+    <h1>Qiita</h1>
+    <ul class="posts"></ul>
+</section>
+<section class="twitter">
+    <h1>Twitter</h1>
+    <div class="tweets" style="margin:0 auto; width:80%">
+        <a class="twitter-timeline" href="https://twitter.com/siphilia_rn?ref_src=twsrc%5Etfw">Tweets by siphilia_rn</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+</section>
 
-    </section>
-    <section class="Twitter">
-        <a class="twitter-timeline" href="https://twitter.com/siphilia_rn" data-widget-id="655313724090126336">@siphilia_rnさんのツイート</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-    </section>
+    </main>
 </div>
+<footer>
+    <nav>
+    <ul class="links">
+        <li class="link"><a href="https://github.com/siphilia">Github</a></li>
+        <li class="link"><a href="https://twitter.com/siphilia_rn">Twitter</a></li>
+        <li class="link"><a href="https://theboss.tech/@siphilia_rn">Mastodon</a></li>
+        <li class="link"><a href="https://qiita.com/siphilia_rn">Qiita</a></li>
+        <li class="link"><a href="./notes.html">Notes</a></li>
+    </ul>
+</nav>
 
-
-        </div>
-        <footer>
-    <div id="Copyright"><small>&copy; 2013-2016 <a href="./contact.html">siphilia</a></small></div>
+    <aside class="email"><img src="http://services.nexodyne.com/email/icon/M0Zzj1TkAhtjr04%3D/S9YBNJY%3D/R01haWw%3D/0/image.png"></aside>
+    <aside class="copyright">© 2013-2018 siphilia</aside>
 </footer>
 
 
-    </body>
+</body>
 </html>
-

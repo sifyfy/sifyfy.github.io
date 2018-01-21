@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="utf-8">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css">
+<head>
+    <meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/5.0.0/sanitize.min.css" type="text/css">
 <link rel="stylesheet" href="../css/default.css" type="text/css">
+<script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
 
+    <title>ghcjsがnode.jsのバージョンによってはうまく動かない事への対処 - siphilia.github.io</title>
+</head>
+<body>
+<header>
+    <div class="profile">
+        <div class="avatar"><a href="../"><img src="https://avatars0.githubusercontent.com/u/5382802?v=4" width="150" height="150"></a></div>
+        <div class="name">Name: siphilia</div>
+    </div>
+    <nav>
+    <ul class="links">
+        <li class="link"><a href="https://github.com/siphilia">Github</a></li>
+        <li class="link"><a href="https://twitter.com/siphilia_rn">Twitter</a></li>
+        <li class="link"><a href="https://theboss.tech/@siphilia_rn">Mastodon</a></li>
+        <li class="link"><a href="https://qiita.com/siphilia_rn">Qiita</a></li>
+        <li class="link"><a href="../notes.html">Notes</a></li>
+    </ul>
+</nav>
 
-        <title>ghcjsがnode.jsのバージョンによってはうまく動かない事への対処 - siphilia.github.io</title>
-    </head>
-    <body>
-        <header id="GlobalNav">
-    <nav class="container-fluid">
-        <ul>
-            <li id="logo"><a href="../">siphilia.github.io</a></li>
-            <li><a href="../games.html">Games</a></li>
-            <li><a href="../notes.html">Notes</a></li>
-            <li><a href="https://twitter.com/siphilia_rn">Twitter</a></li>
-            <li><a href="http://github.com/siphilia">Github</a></li>
-            <li><a href="http://qiita.com/siphilia_rn">Qiita</a></li>
-            <li><a href="../contact.html">Contact</a></li>
-        </ul>
-    </nav>
 </header>
 
-
-        <div id="Main" class="container" role="main">
-            <h1>ghcjsがnode.jsのバージョンによってはうまく動かない事への対処</h1>
-            <div class="Note">
-    <div class="info">
-        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 2016/02/05
+<div id="main-outer">
+    <main>
         
-    </div>
-    <div class="body">
-        <p>Haskell(ghcjs)ネタです。</p>
+            <div class="info">
+                <div class="date"><i class="far fa-calendar-alt"></i> 2016/02/05</div>
+            </div>
+        
+        <h1>ghcjsがnode.jsのバージョンによってはうまく動かない事への対処</h1>
+        <div class="note">
+    <p>Haskell(ghcjs)ネタです。</p>
 <p>最初はQiitaの方に書こうと思っていたのですが、色々試していたらnode.jsのバージョン管理方法に強く依存する事が分かったのでやめてこっちにしました。</p>
 <hr />
 <h2 id="エラーと解決方法">エラーと解決方法</h2>
@@ -52,16 +55,26 @@ node.jsを4.0未満のバージョンにすると概ねどの環境でも正常�
 <li>~/.stack/setup-exe-cache/x86_64-linux/setup-Simple-Cabal-1.22.4.0-ghcjs-0.2.0.20151230.3_ghc-7.10.2.jsexe</li>
 </ul>
 <p>これでnode.jsのバージョン管理システムを乗り換えたりしてnodeコマンドのパスが変わっても新しい方のパスを認識させることが出来ます。</p>
-    </div>
 </div>
 
+    </main>
+</div>
+<footer>
+    <nav>
+    <ul class="links">
+        <li class="link"><a href="https://github.com/siphilia">Github</a></li>
+        <li class="link"><a href="https://twitter.com/siphilia_rn">Twitter</a></li>
+        <li class="link"><a href="https://theboss.tech/@siphilia_rn">Mastodon</a></li>
+        <li class="link"><a href="https://qiita.com/siphilia_rn">Qiita</a></li>
+        <li class="link"><a href="../notes.html">Notes</a></li>
+    </ul>
+</nav>
 
-        </div>
-        <footer>
-    <div id="Copyright"><small>&copy; 2013-2016 <a href="../contact.html">siphilia</a></small></div>
+    <aside class="email"><img src="http://services.nexodyne.com/email/icon/M0Zzj1TkAhtjr04%3D/S9YBNJY%3D/R01haWw%3D/0/image.png"></aside>
+    <aside class="copyright">© 2013-2018 siphilia</aside>
 </footer>
 
 
-    </body>
+</body>
 </html>
 
