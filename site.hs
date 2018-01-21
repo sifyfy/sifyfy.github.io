@@ -20,21 +20,11 @@ main = hakyll $ do
         compile $ getResourceString
             >>= withItemBody (unixFilter "sass" ["-s", "--scss", "-t", "compressed"])
 
-    match "js/haxe/build.hxml" $ do
-        route haxeRoute
-        compile haxeCompiler
-
-    match "pages/*" $ do
-        route $ customRoute $ (`FP.replaceExtension` "html") . FP.takeFileName . toFilePath
-        compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
-            >>= relativizeUrls
-
-    match "games/*.md" $ do
-        route $ setExtension "html"
-        compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
-            >>= relativizeUrls
+--    match "pages/*" $ do
+--        route $ customRoute $ (`FP.replaceExtension` "html") . FP.takeFileName . toFilePath
+--        compile $ pandocCompiler
+--            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+--            >>= relativizeUrls
 
     match "notes/*" $ do
         route $ setExtension "html"
@@ -54,7 +44,7 @@ main = hakyll $ do
 
             makeItem ""
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
-                >>= loadAndApplyTemplate "templates/default.html" archiveCtx
+                >>= loadAndApplyTemplate "templates/notitle.html" archiveCtx
                 >>= relativizeUrls
 
     create ["index.html"] $ do
@@ -79,42 +69,3 @@ postCtx =
 
 loadPosts :: (Binary a, Typeable a) => Maybe Int -> Compiler [Item a]
 loadPosts limit = maybe id take limit <$> (recentFirst =<< loadAll "notes/*")
-
-haxeRoute :: Routes
-haxeRoute = constRoute "js/dummy.js"
-
-data HaxeFile = HaxeFile
-    deriving (Show, Eq, Ord, Typeable)
-
-instance Binary HaxeFile where
-    put HaxeFile = return ()
-    get          = return HaxeFile
-
-instance Writable HaxeFile where
-    write dst item = do
-        let item'   = toFilePath $ itemIdentifier item
-            hxml    = FP.takeFileName item'
-            haxeDir = FP.takeDirectory item'
-            jsBin   = haxeDir FP.</> "bin/*"
-            dst'    = FP.takeDirectory dst
-        ec <- system (cd haxeDir <&&> mkdir "bin" <&&> haxe hxml <&&> cd "-" <&&> cp jsBin dst')
-        when (ec /= ExitSuccess) $ fail $ show ec
-
-haxeCompiler :: Compiler (Item HaxeFile)
-haxeCompiler = makeItem HaxeFile
-
-(<&&>) :: String -> String -> String
-(<&&>) a b = a ++ " && " ++ b
-
-cd :: FilePath -> String
-cd = ("cd " ++)
-
-mkdir :: FilePath -> String
-mkdir = ("mkdir -p " ++)
-
-haxe :: FilePath -> String
-haxe = ("haxe " ++)
-
-cp :: FilePath -> FilePath -> String
-cp s d = "cp " ++ s ++ " " ++ d
-

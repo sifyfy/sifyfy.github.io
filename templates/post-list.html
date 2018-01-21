@@ -1,8 +1,10 @@
-<ul>
+<ul class="article-index">
     $for(posts)$
-        <li>
-            <a href="$url$">$title$</a> - $date$
+        <li class="card">
+            <div class="title">
+                <a href="$url$">$title$</a>
+            </div>
+            <div class="date"><i class="far fa-calendar-alt"></i> $date$</div>
         </li>
     $endfor$
 </ul>
-

@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        $partial("templates/head.html")$
-        <title>$title$ - siphilia.github.io</title>
-    </head>
-    <body>
-        $partial("templates/global-nav.html")$
-        <div id="Main" class="container" role="main">
-            <h1>$title$</h1>
-            $body$
-        </div>
-        $partial("templates/copyright.html")$
-    </body>
+<head>
+    $partial("templates/head.html")$
+    <title>$title$ - siphilia.github.io</title>
+</head>
+<body>
+$partial("templates/header.html")$
+<div id="main-outer">
+    <main>
+        $if(date)$
+            <div class="info">
+                <div class="date"><i class="far fa-calendar-alt"></i> $date$</div>
+            </div>
+        $endif$
+        <h1>$title$</h1>
+        $body$
+    </main>
+</div>
+$partial("templates/footer.html")$
+</body>
 </html>
 
