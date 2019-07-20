@@ -1,22 +1,30 @@
-name:                siphilia-github-io
-version:             0.1.0.0
--- synopsis:
--- description:
-license:             AllRightsReserved
-license-file:        LICENSE
-author:              siphilia
-maintainer:          siphilia.rn@gmail.com
-copyright:           (c) 2013-2015 siphilia.
-build-type:          Simple
--- extra-source-files:
-cabal-version:       >= 1.10
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 37cc53fd9c16bc1ff51922b73a2a6b29b68b6e1ade4c49404da22b20e10da88c
+
+name:           siphilia-github-io
+version:        0.1.0.0
+author:         sifyfy
+maintainer:     sifyfy@sifyfy.dev
+copyright:      (c) 2013-2019 sifyfy.
+license:        AllRightsReserved
+license-file:   LICENSE
+build-type:     Simple
 
 executable site
-    main-is:             site.hs
-    build-depends:       base           == 4.*
-                       , binary
-                       , filepath
-                       , hakyll         == 4.*
-                       , process
-    default-language:    Haskell2010
-    ghc-options:         -threaded
+  main-is: site.hs
+  other-modules:
+      Paths_siphilia_github_io
+  ghc-options: -threaded
+  build-depends:
+      base ==4.*
+    , binary
+    , filepath
+    , hakyll ==4.*
+    , pandoc
+    , process
+  default-language: Haskell2010

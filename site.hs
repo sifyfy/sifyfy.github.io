@@ -8,6 +8,7 @@ import           Hakyll
 import           System.Exit     (ExitCode (..))
 import qualified System.FilePath as FP
 import           System.Process  (system)
+import           Text.Pandoc.Options (WriterOptions (..))
 
 main :: IO ()
 main = hakyll $ do
@@ -18,7 +19,11 @@ main = hakyll $ do
     match "css/*.scss" $ do
         route $ setExtension "css"
         compile $ getResourceString
-            >>= withItemBody (unixFilter "sass" ["-s", "--scss", "-t", "compressed"])
+            >>= withItemBody (unixFilter "node-sass" ["--output-style", "compressed"])
+
+    match "js/*" $ do
+        route idRoute
+        compile copyFileCompiler
 
 --    match "pages/*" $ do
 --        route $ customRoute $ (`FP.replaceExtension` "html") . FP.takeFileName . toFilePath
@@ -28,7 +33,7 @@ main = hakyll $ do
 
     match "notes/*" $ do
         route $ setExtension "html"
-        compile $ pandocCompiler
+        compile $ pandocCompilerWith defaultHakyllReaderOptions defaultHakyllWriterOptions{ writerHighlightStyle = Nothing }
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls

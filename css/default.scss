@@ -1,4 +1,4 @@
-$pc_min_width: 920px;
+$pc_min_width: 720px;
 
 $light: #ffffff;
 $dark: rgba(40, 30, 25, 0.5);
@@ -9,6 +9,7 @@ $default_font_color: #555;
 
 $header_margin_top: 100 * 0.307 * 0.307 * 0.702;
 $main_vertical_margin: $header_margin_top * (1/1.6);
+$main_horizontal_margin: 10px;
 $footer_vertical_margin: $header_margin_top * (1/1.6);
 
 @import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond');
@@ -44,7 +45,7 @@ hr {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: left;
+  align-items: center;
   flex-wrap: wrap;
   margin: #{$header_margin_top * (1/1.6)}vw 0 0 0;
   padding: 0;
@@ -53,7 +54,9 @@ hr {
   list-style-type: none;
 
   .link {
-    padding: 0 1.6em;
+    width: 5.5em;
+    padding: .1em 0;
+    text-align: center;
   }
 }
 
@@ -66,8 +69,14 @@ header {
   background: $dark;
   color: $light;
   font-family: $design_font_set;
-  font-size: 2em;
   font-weight: bold;
+
+  @media screen and (min-width: #{$pc_min_width}) {
+    font-size: 2em;
+  }
+  @media screen and (max-width: #{$pc_min_width}) {
+    font-size: 1.05em;
+  }
 
   a {
     color: $light;
@@ -85,16 +94,22 @@ header {
 
     .avatar {
       text-align: center;
-      padding: 0 1.6em;
+      padding: 0 .6em 0 0;
 
       img {
         border: 5px solid $light;
         border-radius: 50%;
+
+        @media screen and (max-width: #{$pc_min_width}) {
+          width: 90px;
+          height: 90px;
+        }
       }
     }
 
     .name {
-      padding: 0 1.6em;
+      text-align: center;
+      padding: 0 .7em 0 0;
     }
   }
 }
@@ -110,8 +125,15 @@ header {
 
 main {
   max-width: 800px;
-  width: 100%;
-  padding: #{$main_vertical_margin}vw 0 #{$main_vertical_margin * 1.6 * 1.6}vw 0;
+  width: calc(100% - 2 * #{$main_horizontal_margin});
+  padding: 2.5em 0 #{$main_vertical_margin * 1.6 * 1.6}vw 0;
+
+  @media screen and (min-width: #{$pc_min_width}) {
+    font-size: 1.2em;
+  }
+  @media screen and (max-width: #{$pc_min_width}) {
+    font-size: .9em;
+  }
 
   .info {
     .date {
@@ -125,17 +147,31 @@ main {
   }
 
   .recently-notes, .github, .qiita, .twitter {
-    margin-top: #{$main_vertical_margin / (1/1.6)}vw;
+    &:not(:first-child) {
+      margin-top: 5em;
+    }
 
     & > h1 {
-      margin: .67em 0 #{.67 * 1.6 * 1.6}em 0;
+      @media screen and (min-width: #{$pc_min_width}) {
+        margin: 0 0 .6em 0;
+      }
+      @media screen and (max-width: #{$pc_min_width}) {
+        text-align: center;
+        margin: 0 0 .6em 0;
+      }
     }
   }
 
   .twitter {
     .tweets {
       margin: 0 auto;
-      width: 80%;
+
+      @media screen and (min-width: #{$pc_min_width}) {
+        width: 80%;
+      }
+      @media screen and (max-width: #{$pc_min_width}) {
+        width: 100%;
+      }
     }
   }
 
@@ -150,6 +186,14 @@ main {
 
     .p {
       margin: 0 0 1.6em 0;
+    }
+
+    code {
+      background-color: rgba(27, 31, 35, .05);
+      border-radius: 3px;
+      margin: 0;
+      font-size: .85em;
+      padding: .2em .4em;
     }
   }
 }
@@ -176,7 +220,11 @@ main {
 
     .title {
       order: 2;
-      font-size: 1.4em;
+    }
+
+    .text {
+      order: 3;
+      padding-top: .6em;
     }
   }
 }
@@ -200,15 +248,17 @@ footer {
 
   .links {
     font-family: $design_font_set;
-    font-size: 2em;
     font-weight: bold;
-  }
 
-  .email {
-    margin-top: #{$footer_vertical_margin}vw;
+    @media screen and (min-width: #{$pc_min_width}) {
+      font-size: 2em;
+    }
+    @media screen and (max-width: #{$pc_min_width}) {
+      font-size: 1.05em;
+    }
   }
 
   .copyright {
-    margin-top: #{$footer_vertical_margin / 2}vw;
+    margin-top: 2.56em;
   }
 }

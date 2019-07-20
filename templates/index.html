@@ -1,57 +1,21 @@
-<script defer>
-    (() => {
-        const n = 5;
-
-        async function loadItems(url, destSelector, sorter, nameKey, urlKey) {
-            const r = await fetch(url);
-            if (r.ok) {
-                const items = await r.json();
-                items.sort(sorter);
-                const ul = document.querySelector(destSelector);
-                for (const item of items.slice(0,n)) {
-                    const a = document.createElement('a');
-                    a.setAttribute('href', item[urlKey]);
-                    const t = document.createTextNode(item[nameKey]);
-                    a.appendChild(t);
-                    const li = document.createElement('li');
-                    li.appendChild(a);
-                    ul.appendChild(li);
-                }
-            }
-        }
-
-        loadItems(
-            'https://api.github.com/users/siphilia/repos',
-            'main .github .repositories',
-            (a, b) => new Date(a.pushed_at) <= new Date(b.pushed_at),
-            'name',
-            'html_url'
-        );
-
-        loadItems(
-            'https://qiita.com/api/v2/users/siphilia_rn/items?page=1&per_page=' + n,
-            'main .qiita .posts',
-            (a, b) => new Date(a.created_at) <= new Date(b.created_at),
-            'title',
-            'url'
-        );
-    })();
-</script>
 <section class="recently-notes">
     <h1>Recently Notes</h1>
     $partial("templates/post-list.html")$
 </section>
 <section class="github">
     <h1>Github Repositories</h1>
-    <ul class="repositories"></ul>
+    <p style="text-align:center">Recently commited 10 repos.</p>
+    <div class="repositories article-index"></div>
 </section>
 <section class="qiita">
     <h1>Qiita</h1>
-    <ul class="posts"></ul>
+    <div class="posts article-index"></div>
 </section>
 <section class="twitter">
     <h1>Twitter</h1>
-    <div class="tweets" style="margin:0 auto; width:80%">
-        <a class="twitter-timeline" href="https://twitter.com/siphilia_rn?ref_src=twsrc%5Etfw">Tweets by siphilia_rn</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <div class="tweets">
+        <a class="twitter-timeline" href="https://twitter.com/sifyfy?ref_src=twsrc%5Etfw">Tweets by sifyfy</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
 </section>
+<script defer src="/js/card.js"></script>
+<script defer src="/js/index.js"></script>
