@@ -54,9 +54,15 @@ hr {
   list-style-type: none;
 
   .link {
-    width: 5.5em;
     padding: .1em 0;
     text-align: center;
+
+    @media screen and (min-width: #{$pc_min_width}) {
+      width: 5.5em;
+    }
+    @media screen and (max-width: #{$pc_min_width}) {
+      width: 4.75em;
+    }
   }
 }
 
@@ -75,7 +81,7 @@ header {
     font-size: 2em;
   }
   @media screen and (max-width: #{$pc_min_width}) {
-    font-size: 1.05em;
+    font-size: 1em;
   }
 
   a {
@@ -254,7 +260,7 @@ footer {
       font-size: 2em;
     }
     @media screen and (max-width: #{$pc_min_width}) {
-      font-size: 1.05em;
+      font-size: 1em;
     }
   }
 
